@@ -1,6 +1,18 @@
-# Logs
+# Project files
+.json
+
+# Local files
+volumes
+env
+log
 logs
+tmp
+work
+
+.env
+*.tmp
 *.log
+*.local
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
