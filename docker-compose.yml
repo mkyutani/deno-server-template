@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  deno:
+    build:
+      context: agent
+      dockerfile: "Dockerfile"
+      target: "${TARGET}"
+    hostname: agent
+    container_name: sw2agent
+    working_dir: "/app"
+    environment:
+      - "PORT=${AGENT_PORT}"
+      - "SW2_SERVER=${SW2_SERVER}"
+      - "SW2_PORT=${SW2_PORT}"
+      - "TARGET=${TARGET}"
+    ports:
+      - "${AGENT_EX_PORT}:${AGENT_PORT}"
+    volumes:
+      - ./agent:/app
+      - ./volumes/deno-dir.${TARGET}:/deno-dir
+    networks:
+      - local-network
+
+networks:
+  local-network:
+    driver: bridge
+    name: sw2agent-network
