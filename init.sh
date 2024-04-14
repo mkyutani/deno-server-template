@@ -56,15 +56,12 @@ fi
 touch ${ENV_FILE}
 echo "LOGS=/logs" >>${ENV_FILE}
 
-echo "SW2_SERVER=localhost" >>${ENV_FILE}
-echo "SW2_PORT=18085" >>${ENV_FILE}
-
-echo "AGENT_EX_PORT=18087" >>${ENV_FILE}
-echo "AGENT_PORT=8089" >>${ENV_FILE}
+echo "API_EX_PORT=18085" >>${ENV_FILE}
+echo "API_PORT=8089" >>${ENV_FILE}
 
 echo "TARGET=${TARGET}" >>${ENV_FILE}
 
-cp -f ./${ENV_FILE} agent/${ENV_FILE}
+cp -f ./${ENV_FILE} api/${ENV_FILE}
 
 if [ ${CREATED} = 1 ]; then
     echo " created."
@@ -93,6 +90,9 @@ echo -n "Creating site directories ..."
 CREATED=0
 create_directory "${VOLUMES}" 775 ${USER} ${GROUP}
 create_directory "${VOLUMES}/deno-dir.${TARGET}" 775 1993 1993
+create_directory "${VOLUMES}/pg" 775 999 999
+create_directory "${VOLUMES}/pg/data" 775 999 999
+create_directory "${VOLUMES}/pg/initdb" 775 999 999
 if [ ${CREATED} = 1 ]; then
     echo " created."
 else

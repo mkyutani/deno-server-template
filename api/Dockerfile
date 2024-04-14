@@ -8,3 +8,9 @@ USER deno
 COPY --chown=deno:deno . /app
 RUN deno cache main.ts
 CMD ["run", "--allow-net", "--allow-read", "--allow-env", "main.ts"]
+
+FROM base AS production
+USER deno
+COPY --chown=deno:deno . /app
+RUN deno cache main.ts
+CMD ["run", "--allow-net", "--allow-read", "--allow-env", "main.ts"]
