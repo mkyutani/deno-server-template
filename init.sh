@@ -90,9 +90,6 @@ echo -n "Creating site directories ..."
 CREATED=0
 create_directory "${VOLUMES}" 775 ${USER} ${GROUP}
 create_directory "${VOLUMES}/deno-dir.${TARGET}" 775 1993 1993
-create_directory "${VOLUMES}/pg" 775 999 999
-create_directory "${VOLUMES}/pg/data" 775 999 999
-create_directory "${VOLUMES}/pg/initdb" 775 999 999
 if [ ${CREATED} = 1 ]; then
     echo " created."
 else
